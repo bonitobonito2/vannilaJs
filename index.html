@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link href="./index.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body onload="loadHandler()">
+    <form onsubmit="submitHandler()">
+      <div class="main_form">
+        <div class="form-group">
+          <label for="name">name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Enter name"
+          />
+          <small id="nameHelp">required</small>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">lastname</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            placeholder="Enter lastname"
+          />
+          <small id="lastNameHelp">required</small>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            placeholder="Enter Address"
+          />
+          <small id="addressHelp">required</small>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Caldendar</label>
+          <input
+            type="date"
+            class="form-control"
+            id="exampleInputCaldendar1"
+            placeholder="Enter Caldendar"
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >not required</small
+          >
+        </div>
+
+        <div><input type="radio" name="" id="" />male</div>
+        <div><input type="radio" name="" id="" />female</div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Note</label>
+          <textarea
+            type="textarea"
+            class="form-control"
+            id="exampleInputNote1"
+            placeholder="Enter Note"
+          ></textarea>
+          <small id="emailHelp" class="form-text text-muted"
+            >not required</small
+          >
+        </div>
+        <div class="add">
+          <button id="submit" type="button" class="btn btn-success">
+            add information
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div id="items"></div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script src="./index.js"></script>
+</html>
