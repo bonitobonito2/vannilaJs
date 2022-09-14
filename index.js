@@ -42,6 +42,8 @@ const button = document.getElementById("submit");
 const nameInput = document.getElementById("name");
 const lastNameInut = document.getElementById("lastName");
 const addressInput = document.getElementById("address");
+const note = document.getElementById("note");
+const date = document.getElementById("calendar");
 const maleRadio = document.getElementById("maleRadio");
 const femaleRadio = document.getElementById("femaleRadio");
 const items = document.getElementById("items");
@@ -79,19 +81,37 @@ function allStorage() {
 const loadHandler = () => {
   const item = allStorage();
   items.innerHTML = "";
-  if (item) {
-    console.log(item.name);
+
+  if (item != undefined) {
+    console.log(item.name, "item");
     item.map((obj) => {
       console.log(obj);
 
-      const oneItem = document.createElement("div");
-      oneItem.innerHTML = `name : ${obj.name}; lastname : ${
-        obj.lastName
-      }; address : ${obj.address}; gender : ${
+      const name = document.createElement("td");
+      name.innerHTML = `name : ${obj.name};`;
+      const lastName = document.createElement("td");
+      lastName.innerHTML = `lastname : ${obj.lastName}`;
+      const address = document.createElement("td");
+      address.innerHTML = `address : ${obj.address}`;
+      const gender = document.createElement("td");
+      gender.innerHTML = `gender : ${
         obj.choosenGender ? obj.choosenGender : "not defined"
       }`;
+      const data = document.createElement("td");
+      data.innerHTML = `data : ${obj.data ? obj.data : "not defined"}`;
+      const note = document.createElement("td");
+      note.innerHTML = `note : ${obj.note ? obj.note : "not defined"}`;
+      const division = document.createElement("tr");
 
-      items.appendChild(oneItem);
+      division.classList.add("div");
+      division.appendChild(name);
+      division.appendChild(lastName);
+      division.appendChild(address);
+      division.appendChild(gender);
+      division.appendChild(data);
+      division.appendChild(note);
+
+      items.appendChild(division);
     });
   }
 };
@@ -106,13 +126,25 @@ const clickHandler = () => {
   //address Validation
   let address = addressInput.value;
   let isAddressValid = validationFunctions.addressValidation(address);
+  //date
+  let dataTime = date.value;
+  //note
+  let notee = note.value;
 
+  console.log(notee, "note");
+  console.log(dataTime, "date");
   if (nameIsValid && lastNameIsValid && isAddressValid) {
     const items = allStorage();
     let item = { name: name, lastName: lastName, address: address };
     console.log(choosenGender);
     if (choosenGender != "") {
       item.choosenGender = choosenGender;
+    }
+    if (dataTime) {
+      item.data = dataTime;
+    }
+    if (notee) {
+      item.note = notee;
     }
     localStorage.setItem(items.length + 1, JSON.stringify(item));
     loadHandler();

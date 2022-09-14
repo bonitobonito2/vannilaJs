@@ -50,11 +50,11 @@
         </div>
 
         <div class="form-group">
-          <label for="exampleInputEmail1">Caldendar</label>
+          <label for="calendar">Caldendar</label>
           <input
             type="date"
             class="form-control"
-            id="exampleInputCaldendar1"
+            id="calendar"
             placeholder="Enter Caldendar"
           />
           <small id="emailHelp" class="form-text text-muted"
@@ -62,15 +62,29 @@
           >
         </div>
 
-        <div><input onchange="changeHandler('male')" type="radio" name="" id="maleRadio" />male</div>
-        <div><input onchange="changeHandler('female')" type="radio" name="" id="femaleRadio" />female</div>
+        <div>
+          <input
+            onchange="changeHandler('male')"
+            type="radio"
+            name=""
+            id="maleRadio"
+          />male
+        </div>
+        <div>
+          <input
+            onchange="changeHandler('female')"
+            type="radio"
+            name=""
+            id="femaleRadio"
+          />female
+        </div>
 
         <div class="form-group">
-          <label for="exampleInputEmail1">Note</label>
+          <label for="note">Note</label>
           <textarea
             type="textarea"
             class="form-control"
-            id="exampleInputNote1"
+            id="note"
             placeholder="Enter Note"
           ></textarea>
           <small id="emailHelp" class="form-text text-muted"
@@ -84,8 +98,19 @@
         </div>
       </div>
     </form>
+    <br />
+    <!-- <div id="items"></div> -->
 
-    <div id="items"></div>
+    <table id="items">
+      <tr>
+        <th>Name</th>
+        <th>Lastname</th>
+        <th>Address</th>
+        <th>Data</th>
+        <th>Gender</th>
+        <th>Note</th>
+      </tr>
+    </table>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
