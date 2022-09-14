@@ -131,7 +131,7 @@ const addOneHandler = (id) => {
   addHandler(item);
 };
 
-button.addEventListener("click", clickHandler);
+
 
 const clickHandler = () => {
   //name validation
@@ -163,3 +163,6 @@ const clickHandler = () => {
     addOneHandler(items.length + 1);
   }
 };
+
+
+button.addEventListener("click", clickHandler);
