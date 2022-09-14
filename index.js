@@ -128,12 +128,6 @@ const loadHandler = () => {
   }
 };
 
-const addOneHandler = (id) => {
-  let item = localStorage.getItem(id);
-  item = JSON.parse(item);
-  addHandler(item);
-};
-
 const clickHandler = () => {
   //name validation
   let name = nameInput.value;
@@ -161,7 +155,6 @@ const clickHandler = () => {
 
     item.id = items.length + 1;
     localStorage.setItem(items.length + 1, JSON.stringify(item));
-    addOneHandler(items.length + 1);
   }
 };
 
