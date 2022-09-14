@@ -158,10 +158,19 @@ const clickHandler = () => {
     if (dataTime) item.data = dataTime;
 
     if (notee) item.note = notee;
-
-    item.id = items.length + 1;
-    localStorage.setItem(items.length + 1, JSON.stringify(item));
-    addOneHandler(items.length + 1);
+    let biggestID;
+    for (var i = 0; i < items.length; i++) {
+      if (i === 0) {
+        biggestID = items[i].id;
+      } else {
+        if (items[i].id > biggestID) {
+          biggestID = items[i].id;
+        }
+      }
+    }
+    item.id = biggestID+1;
+    localStorage.setItem(biggestID+1, JSON.stringify(item));
+    addOneHandler(biggestID+1);
   }
 };
 
