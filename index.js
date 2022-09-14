@@ -1,3 +1,13 @@
+const button = document.getElementById("submit");
+const nameInput = document.getElementById("name");
+const lastNameInut = document.getElementById("lastName");
+const addressInput = document.getElementById("address");
+const note = document.getElementById("note");
+const date = document.getElementById("calendar");
+const maleRadio = document.getElementById("maleRadio");
+const femaleRadio = document.getElementById("femaleRadio");
+const items = document.getElementById("items");
+
 const validationFunctions = {
   nameValidation: function (name) {
     if (name.length === 0) {
@@ -38,15 +48,43 @@ function uncheck(id) {
   return true;
 }
 
-const button = document.getElementById("submit");
-const nameInput = document.getElementById("name");
-const lastNameInut = document.getElementById("lastName");
-const addressInput = document.getElementById("address");
-const note = document.getElementById("note");
-const date = document.getElementById("calendar");
-const maleRadio = document.getElementById("maleRadio");
-const femaleRadio = document.getElementById("femaleRadio");
-const items = document.getElementById("items");
+const addHandler = (object) => {
+  const name = document.createElement("td");
+  name.innerHTML = `${object.name}`;
+  const lastName = document.createElement("td");
+  lastName.innerHTML = `${object.lastName}`;
+  const address = document.createElement("td");
+  address.innerHTML = `${object.address}`;
+  const gender = document.createElement("td");
+  gender.innerHTML = `${
+    object.choosenGender ? object.choosenGender : "not defined"
+  }`;
+  const data = document.createElement("td");
+  data.innerHTML = `${object.data ? object.data : "not defined"}`;
+  const note = document.createElement("td");
+  note.innerHTML = `${object.note ? object.note : "not defined"}`;
+
+  const deletee = document.createElement("td");
+  const deleteButton = document.createElement("button");
+  deleteButton.innerHTML = "delete";
+  deletee.appendChild(deleteButton);
+  deleteButton.addEventListener("click", () => {
+    localStorage.removeItem(object.id);
+    items.removeChild(document.getElementById(object.id));
+  });
+  const division = document.createElement("tr");
+
+  division.classList.add("div");
+  division.appendChild(name);
+  division.appendChild(lastName);
+  division.appendChild(address);
+  division.appendChild(gender);
+  division.appendChild(data);
+  division.appendChild(note);
+  division.appendChild(deletee);
+  division.id = object.id;
+  items.appendChild(division);
+};
 
 let choosenGender = "";
 
@@ -62,9 +100,8 @@ const changeHandler = (gender) => {
       ? (choosenGender = "female")
       : (choosenGender = "");
   }
-
-  console.log(choosenGender);
 };
+
 function allStorage() {
   var values = [],
     keys = Object.keys(localStorage),
@@ -80,41 +117,21 @@ function allStorage() {
 
 const loadHandler = () => {
   const item = allStorage();
-  items.innerHTML = "";
 
   if (item != undefined) {
-    console.log(item.name, "item");
     item.map((obj) => {
-      console.log(obj);
-
-      const name = document.createElement("td");
-      name.innerHTML = `name : ${obj.name};`;
-      const lastName = document.createElement("td");
-      lastName.innerHTML = `lastname : ${obj.lastName}`;
-      const address = document.createElement("td");
-      address.innerHTML = `address : ${obj.address}`;
-      const gender = document.createElement("td");
-      gender.innerHTML = `gender : ${
-        obj.choosenGender ? obj.choosenGender : "not defined"
-      }`;
-      const data = document.createElement("td");
-      data.innerHTML = `data : ${obj.data ? obj.data : "not defined"}`;
-      const note = document.createElement("td");
-      note.innerHTML = `note : ${obj.note ? obj.note : "not defined"}`;
-      const division = document.createElement("tr");
-
-      division.classList.add("div");
-      division.appendChild(name);
-      division.appendChild(lastName);
-      division.appendChild(address);
-      division.appendChild(gender);
-      division.appendChild(data);
-      division.appendChild(note);
-
-      items.appendChild(division);
+      addHandler(obj);
     });
   }
 };
+
+const addOneHandler = (id) => {
+  let item = localStorage.getItem(id);
+  item = JSON.parse(item);
+  addHandler(item);
+};
+
+button.addEventListener("click", clickHandler);
 
 const clickHandler = () => {
   //name validation
@@ -131,24 +148,18 @@ const clickHandler = () => {
   //note
   let notee = note.value;
 
-  console.log(notee, "note");
-  console.log(dataTime, "date");
   if (nameIsValid && lastNameIsValid && isAddressValid) {
     const items = allStorage();
     let item = { name: name, lastName: lastName, address: address };
-    console.log(choosenGender);
-    if (choosenGender != "") {
-      item.choosenGender = choosenGender;
-    }
-    if (dataTime) {
-      item.data = dataTime;
-    }
-    if (notee) {
-      item.note = notee;
-    }
+
+    if (choosenGender != "") item.choosenGender = choosenGender;
+
+    if (dataTime) item.data = dataTime;
+
+    if (notee) item.note = notee;
+
+    item.id = items.length + 1;
     localStorage.setItem(items.length + 1, JSON.stringify(item));
-    loadHandler();
+    addOneHandler(items.length + 1);
   }
 };
-
-button.addEventListener("click", clickHandler);
