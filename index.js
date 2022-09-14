@@ -83,7 +83,7 @@ const addHandler = (object) => {
   division.appendChild(data);
   division.appendChild(deletee);
   division.addEventListener("click", () => {
-    window.alert(`note : ${object.note});
+    window.alert(`note : ${object.note}`);
   });
   division.id = object.id;
   items.appendChild(division);
