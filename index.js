@@ -83,7 +83,7 @@ const addHandler = (object) => {
   division.appendChild(data);
   division.appendChild(deletee);
   division.addEventListener("click", () => {
-    window.alert(`note : ${object.note}`);
+    window.alert(`note : ${object.note});
   });
   division.id = object.id;
   items.appendChild(division);
@@ -128,6 +128,12 @@ const loadHandler = () => {
   }
 };
 
+const addOneHandler = (id) => {
+  let item = localStorage.getItem(id);
+  item = JSON.parse(item);
+  addHandler(item);
+};
+
 const clickHandler = () => {
   //name validation
   let name = nameInput.value;
@@ -155,6 +161,7 @@ const clickHandler = () => {
 
     item.id = items.length + 1;
     localStorage.setItem(items.length + 1, JSON.stringify(item));
+    addOneHandler(items.length + 1);
   }
 };
 
