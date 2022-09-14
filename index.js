@@ -49,6 +49,8 @@ function uncheck(id) {
 }
 
 const addHandler = (object) => {
+  const Id = document.createElement("td");
+  Id.innerHTML = `${object.id}`;
   const name = document.createElement("td");
   name.innerHTML = `${object.name}`;
   const lastName = document.createElement("td");
@@ -61,8 +63,6 @@ const addHandler = (object) => {
   }`;
   const data = document.createElement("td");
   data.innerHTML = `${object.data ? object.data : "not defined"}`;
-  const note = document.createElement("td");
-  note.innerHTML = `${object.note ? object.note : "not defined"}`;
 
   const deletee = document.createElement("td");
   const deleteButton = document.createElement("button");
@@ -75,13 +75,16 @@ const addHandler = (object) => {
   const division = document.createElement("tr");
 
   division.classList.add("div");
+  division.appendChild(Id);
   division.appendChild(name);
   division.appendChild(lastName);
   division.appendChild(address);
   division.appendChild(gender);
   division.appendChild(data);
-  division.appendChild(note);
   division.appendChild(deletee);
+  division.addEventListener("click", () => {
+    window.alert(`note : ${object.note}`);
+  });
   division.id = object.id;
   items.appendChild(division);
 };
@@ -131,8 +134,6 @@ const addOneHandler = (id) => {
   addHandler(item);
 };
 
-
-
 const clickHandler = () => {
   //name validation
   let name = nameInput.value;
@@ -163,6 +164,5 @@ const clickHandler = () => {
     addOneHandler(items.length + 1);
   }
 };
-
 
 button.addEventListener("click", clickHandler);
