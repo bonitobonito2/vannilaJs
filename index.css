@@ -8,14 +8,14 @@
   border-radius: 5px;
   gap: 10px;
 }
-html, body {
+ body {
     margin: 0;
-    height: 100%;
+    
 
 }
-
 body{
-    padding-bottom: 50px;
+
+    padding-top: 25px;
 }
 
 .add {
@@ -32,6 +32,7 @@ body{
 table {
   margin: 0 auto;
   width: 60%;
+  margin-bottom: 150px;
 
 }
 table,

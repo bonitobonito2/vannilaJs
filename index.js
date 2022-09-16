@@ -85,6 +85,8 @@ const addHandler = (object) => {
   division.addEventListener("click", () => {
     window.alert(`note : ${object.note}`);
   });
+
+  division.style.cursor = 'pointer'
   division.id = object.id;
   items.appendChild(division);
 };
